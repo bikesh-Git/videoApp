@@ -12,7 +12,7 @@ function Recommendation({tags}) {
 
     useEffect(() => {
       const fetchVideos = async()=>{
-        const res = await axios.get(`https://videoapp13.herokuapp.com/api/videos/tags?tags=${tags}`)
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/videos/tags?tags=${tags}`)
         setVideos(res.data)
         console.log(res.data)
       }

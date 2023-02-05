@@ -17,7 +17,7 @@ function Search() {
 
     useEffect(() => {
       const fetchVideos = async()=>{
-        const res = await axios.get(`https://videoapp13.herokuapp.com/api/videos/search${query}`)
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/videos/search${query}`)
         setVideos(res.data)
       }
     fetchVideos()

@@ -143,12 +143,12 @@ function Upload({ setOpen }) {
 
   const handleUpload =async(e)=>{
     e.preventDefault()
-    const res = await axios.post(`https://videoapp13.herokuapp.com/api/videos`,{
+    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/videos`,{
       ...inputs,tags
     })
     setOpen(false)
 
-    res.status === 200 && navigate(`https://videoapp13.herokuapp.com/api/video/${res.data._id}`)
+    res.status === 200 && navigate(`${process.env.REACT_APP_BASE_URL}/video/${res.data._id}`)
      console.log("sss",res.data)
   }
   return (

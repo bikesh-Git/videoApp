@@ -3,9 +3,10 @@ import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import VideocamIcon from '@mui/icons-material/Videocam';
 import Upload from './Upload'
+import { logout } from "../redux/userSlice";
 
 
 const Container = styled.div`
@@ -23,6 +24,8 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 0 20px;
   position: relative;
+  // background-color:red;
+
 `;
 
 const Search = styled.div`
@@ -80,12 +83,22 @@ background-color: gray;
 const UserName = styled.span`
 `
 
+const Logout =styled.span`
+font-size:15px;
+cursor:pointer;
+background-color: gray;
+padding:5px 10px;
+border-radius:5px;
+`
+
 function Navbar() {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [q, setQ] = useState("")
+  const dispatch = useDispatch()
 
   const {user} = useSelector((state)=>state.user)
+   
 
   return (
     <>
@@ -100,6 +113,7 @@ function Navbar() {
           <VideocamIcon onClick={()=>setOpen(true)}/>
           <Image src={user?.img} />
           <UserName>{user.name}</UserName>
+          <Logout onClick={ ()=>dispatch(logout())}>Logout</Logout>
         </User>
         :
         <Link to="signin" style={{ textDecoration: "none" }}>

@@ -73,6 +73,7 @@ const Button = styled.button`
   color: #3ea6ff;
   width: max-content;
   margin-top: 10px;
+  cursor:pointer;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -98,17 +99,17 @@ function Menu({ darkMode, setDarkMode }) {
             Vizziee
           </Logo>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <HomeIcon /> Home
         </Item>
         </Link>
-        <Link to="trend"  style={{ textDecoration: "none" }}>
+        <Link to="trend"  style={{ textDecoration: "none", color: "inherit" }}>
           <Item>
             <ExploreIcon /> Explore
           </Item>
         </Link>
-        <Link to="subcriptions"  style={{ textDecoration: "none" }}>
+        <Link to="subcriptions"  style={{ textDecoration: "none", color: "inherit" }}>
           <Item>
             <SubscriptionsIcon /> Subscription
           </Item>
@@ -121,7 +122,7 @@ function Menu({ darkMode, setDarkMode }) {
           <Link to="signin" style={{ textDecoration: "none" }}>
             <Button>
               <AccountCircleIcon />
-              SIGNIN
+              SIGN IN 
             </Button>
           </Link>
         </Login>

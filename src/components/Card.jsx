@@ -67,7 +67,7 @@ const [channel, setChannel] = useState({})
  
 useEffect(() => {
     const fetchChannel = async()=>{
-      const res = await axios.get(`https://videoapp13.herokuapp.com/api/users/find/${video.userId}`)
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/find/${video.userId}`)
       setChannel(res.data)
     }
     fetchChannel()

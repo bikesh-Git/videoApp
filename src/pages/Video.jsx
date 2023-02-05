@@ -121,9 +121,9 @@ function Video() {
 useEffect(() => {
     const fetchData = async()=>{
       try{
-        const videoRes = await axios.get(`/videos/find/${videoId}`)
+        const videoRes = await axios.get(`${process.env.REACT_APP_BASE_URL}/videos/find/${videoId}`)
       
-        const channelRes = await axios.get(`/users/find/${videoRes.data.userId}`)
+        const channelRes = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/find/${videoRes.data.userId}`)
         setChannel(channelRes.data)
         dispatch(fetchSuccess(videoRes.data))
       }
@@ -135,19 +135,19 @@ useEffect(() => {
   }, [videoId,dispatch])
 
   const handleLike =async()=>{
-      await axios.put(`/users/like/${currentVideo._id}`)
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/users/like/${currentVideo._id}`)
       dispatch(like(user._id))
   }
   const handleDislike =async()=>{
-    await axios.put(`/users/dislike/${currentVideo._id}`)
+    await axios.put(`${process.env.REACT_APP_BASE_URL}/users/dislike/${currentVideo._id}`)
     dispatch(dislike(user._id))
   }
 
   const handleSub = async()=>{
     user.subscibedUsers.includes(channel._id) ? 
-    await axios.put(`https://videoapp13.herokuapp.com/api/users/unsub/${channel._id}`)
+    await axios.put(`${process.env.REACT_APP_BASE_URL}/users/unsub/${channel._id}`)
     :
-    await axios.put(`https://videoapp13.herokuapp.com/api/users/sub/${channel._id}`);
+    await axios.put(`${process.env.REACT_APP_BASE_URL}/users/sub/${channel._id}`);
 
 
     dispatch(subscription(channel._id))
@@ -155,7 +155,8 @@ useEffect(() => {
 
   return (
     <Container>
-    {currentVideo && <Content>
+    {currentVideo &&
+     <Content>
         <VideoWrapper>
           <VideoFrame src={currentVideo.videoUrl} controls/>
           <Title>{currentVideo.title}</Title>
@@ -202,7 +203,7 @@ useEffect(() => {
         </VideoWrapper>
       </Content>}
 
-      <Recommendation tags={currentVideo.tags}/>
+      <Recommendation tags={currentVideo?.tags}/>
      
     </Container>
   );

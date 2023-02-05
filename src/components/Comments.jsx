@@ -31,7 +31,7 @@ function Comments({videoId}) {
 
   useEffect(() => {
     const fetchComments = async () => {
-      const res = await axios.get(`https://videoapp13.herokuapp.com/api/comments/${videoId}`);
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/comments/${videoId}`);
       setComments(res.data);
       console.log("commests", res.data);
     };
